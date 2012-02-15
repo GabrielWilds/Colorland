@@ -74,7 +74,7 @@ namespace ColorLand
             int spacesMoved = 1;
             while (!foundDestination)
             {
-                if (Board.Tiles[Players[CurTurn].Position + spacesMoved].Color == card.Color || Players[CurTurn].Position + spacesMoved == Board.Tiles.Length)
+                if (Board.Tiles[Players[CurTurn].Position + spacesMoved].Color == card.Color || Players[CurTurn].Position + spacesMoved == Board.Tiles.Length - 1)
                     foundDestination = true;
                 else
                     spacesMoved++;
