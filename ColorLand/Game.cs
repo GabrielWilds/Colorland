@@ -60,23 +60,34 @@ namespace ColorLand
             AddBot("Player Two");
         }
 
-        public void Start()
+        public void Start(MainWindow window)
         {
             PopulateDemoGame();
             if (Players[CurTurn] is BotPlayer)
-                TakeTurn();
+                TakeTurn(window);
         }
 
-        public void TakeTurn()
+        public void TakeTurn(MainWindow window)
         {
             while (true)
             {
                 MakeTurn(Players[CurTurn]);
+                CheckVictory(Players[CurTurn], window);
                 CurTurn++;
+
                 if (CurTurn == Players.Count)
                     CurTurn = 0;
                 if (!(Players[CurTurn] is BotPlayer))
                     break;
+            }
+        }
+
+        public void CheckVictory(Player player, MainWindow window)
+        {
+            if (player.Position == Board.Tiles.Length - 1)
+            {
+                MessageBox.Show("Player " + player.Name + " has won the game!", "GAME OVER");
+                window.Close();
             }
         }
 

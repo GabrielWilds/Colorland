@@ -23,11 +23,6 @@ namespace ColorLand
             ColorLandGame = new Game(board, new Deck());
         }
 
-        public void PlayTurn()
-        {
-            ColorLandGame.TakeTurn();
-        }
-
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

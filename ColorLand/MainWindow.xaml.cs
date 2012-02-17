@@ -30,7 +30,7 @@ namespace ColorLand
             this.DataContext = new MainWindowViewModel(20, 30);
             InitializeComponent();
             ((MainWindowViewModel)this.DataContext).ColorLandGame.Board.DrawBoard(GameCanvas);
-            ((MainWindowViewModel)this.DataContext).ColorLandGame.Start();
+            ((MainWindowViewModel)this.DataContext).ColorLandGame.Start(this);
             ((MainWindowViewModel)this.DataContext).ColorLandGame.DrawPlayers();
         }
 
@@ -82,7 +82,7 @@ namespace ColorLand
 
         private void DrawCard(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)this.DataContext).ColorLandGame.TakeTurn();
+            ((MainWindowViewModel)this.DataContext).ColorLandGame.TakeTurn(this);
         }
     }
 }
