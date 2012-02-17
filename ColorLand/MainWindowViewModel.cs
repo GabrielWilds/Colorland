@@ -25,7 +25,7 @@ namespace ColorLand
 
         public void PlayTurn()
         {
-            ColorLandGame.MakeTurn();
+            ColorLandGame.TakeTurn();
         }
 
         private void OnPropertyChanged(string propertyName)

@@ -37,7 +37,7 @@ namespace ColorLand
             Board = _board;
             Deck = _deck;
         }
-        
+
         public int CurTurn
         {
             get { return _curTurn; }
@@ -46,8 +46,6 @@ namespace ColorLand
 
         public void AddHuman(string name)
         {
-
-            DrawingBrush brush = new DrawingBrush();
             Players.Add(new LocalPlayer(name, Players.Count, MakePlayerSprite(Players.Count + 1)));
         }
 
@@ -59,33 +57,37 @@ namespace ColorLand
         public void PopulateDemoGame()
         {
             AddHuman("Player One");
-            AddHuman("Player Two");
+            AddBot("Player Two");
         }
 
         public void Start()
         {
+            PopulateDemoGame();
+            if (Players[CurTurn] is BotPlayer)
+                TakeTurn();
         }
 
-        public void MakeTurn()
+        public void TakeTurn()
+        {
+            while (true)
+            {
+                MakeTurn(Players[CurTurn]);
+                CurTurn++;
+                if (CurTurn == Players.Count)
+                    CurTurn = 0;
+                if (!(Players[CurTurn] is BotPlayer))
+                    break;
+            }
+        }
+
+        public void MakeTurn(Player player)
         {
             Card card = Deck.DrawCard();
-            MessageBox.Show("Your Card is: " + card.Color.ToString());
-            bool foundDestination = false;
-            int spacesMoved = 1;
-            while (!foundDestination)
-            {
-                if (Board.Tiles[Players[CurTurn].Position + spacesMoved].Color == card.Color || Players[CurTurn].Position + spacesMoved == Board.Tiles.Length - 1)
-                    foundDestination = true;
-                else
-                    spacesMoved++;
-            }
-            Players[CurTurn].Position = Players[CurTurn].Position + spacesMoved;
-            Board.LocateSprite(Players[CurTurn]);
-            CurTurn++;
-            if (CurTurn == Players.Count)
-                CurTurn = 0;
-            if (Players[CurTurn] is BotPlayer)
-                MakeTurn();
+            if(player is LocalPlayer)
+                MessageBox.Show("Your Card is: " + card.Color.ToString());
+
+            player.Position = player.Position + Board.GetMoveDistance(player, card);
+            Board.LocateSprite(player);
         }
 
         protected Rectangle MakePlayerSprite(int index)
@@ -95,7 +97,7 @@ namespace ColorLand
             ellipse.RadiusX = Board.TileHeight - 2;
             ellipse.RadiusY = Board.TileWidth - 2;
             aDrawing.Geometry = ellipse;
-            aDrawing.Brush = Brushes.White;        
+            aDrawing.Brush = Brushes.White;
 
             DrawingBrush brush = new DrawingBrush(aDrawing);
             StackPanel panel = new StackPanel();
@@ -118,7 +120,7 @@ namespace ColorLand
 
         public void DrawPlayers()
         {
-            for(int i = 0; i < Players.Count; i++)
+            for (int i = 0; i < Players.Count; i++)
                 Board.DrawPlayer(Players[i]);
         }
     }

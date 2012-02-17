@@ -88,6 +88,21 @@ namespace ColorLand
             WPFCanvas.SetLeft(player.Sprite, startWidth + 1);
         }
 
+        public int GetMoveDistance(Player player, Card card)
+        {
+            bool foundDestination = false;
+            int spacesMoved = 1;
+            while (!foundDestination)
+            {
+                if (Tiles[player.Position + spacesMoved].Color == card.Color || player.Position + spacesMoved == Tiles.Length - 1)
+                    foundDestination = true;
+                else
+                    spacesMoved++;
+            }
+
+            return spacesMoved;
+        }
+
         public Brush GetColorFromGameColors(GameColors color)
         {
             switch (color)
