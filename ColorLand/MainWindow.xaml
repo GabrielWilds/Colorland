@@ -1,6 +1,7 @@
 ﻿<Window x:Class="ColorLand.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MyNameSpace="clr-namespace:ColorLand"
         Title="Colorland" Height="{Binding Path=WindowHeight}" Width="{Binding Path=WindowWidth}" Background="LightBlue">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,15 +18,21 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="ID"  DisplayMemberBinding="{Binding Path=PlayerID}"></GridViewColumn>
-                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
-                        <GridViewColumn Header="Sprite">
+                        <GridViewColumn Header=" # ">
                             <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Rectangle Fill="{Binding Path=Sprite}"></Rectangle>
+                                <DataTemplate DataType="{x:Type MyNameSpace:Player}">
+                                    <UniformGrid>
+                                        <UniformGrid.Background>
+                                            <VisualBrush Visual="{Binding Sprite}"/>
+                                        </UniformGrid.Background>
+                                        <Border Height="15" Width="15"/>
+                                    </UniformGrid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        
+                        <GridViewColumn Header="Name" Width="110" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                        <GridViewColumn Header="Turn" DisplayMemberBinding="{Binding Path=CurPlayer}"></GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

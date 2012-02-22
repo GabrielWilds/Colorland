@@ -27,7 +27,7 @@ namespace ColorLand
             set;
         }
 
-        public Rankings Ranking
+        public string CurPlayer
         {
             get;
             set;

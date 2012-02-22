@@ -46,6 +46,12 @@ namespace ColorLand
             CanvasWidth = canvasWidth;
         }
 
+        public void TakeTurn(MainWindow window)
+        {
+            ColorLandGame.TakeTurn(window);
+            OnPropertyChanged("ColorLandGame");
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

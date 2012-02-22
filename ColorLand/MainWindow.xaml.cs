@@ -82,7 +82,7 @@ namespace ColorLand
 
         private void DrawCard(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)this.DataContext).ColorLandGame.TakeTurn(this);
+            ((MainWindowViewModel)this.DataContext).TakeTurn(this);
         }
     }
 }

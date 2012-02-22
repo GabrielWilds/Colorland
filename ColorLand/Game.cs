@@ -73,10 +73,14 @@ namespace ColorLand
             {
                 MakeTurn(Players[CurTurn]);
                 CheckVictory(Players[CurTurn], window);
-                CurTurn++;
+                Players[CurTurn].CurPlayer = "";
 
+                CurTurn++;
                 if (CurTurn == Players.Count)
                     CurTurn = 0;
+
+                Players[CurTurn].CurPlayer = "<";
+
                 if (!(Players[CurTurn] is BotPlayer))
                     break;
             }
@@ -93,6 +97,7 @@ namespace ColorLand
 
         public void MakeTurn(Player player)
         {
+            Board.LocateSprite(player);
             Card card = Deck.DrawCard();
             if(player is LocalPlayer)
                 MessageBox.Show("Your Card is: " + card.Color.ToString());
