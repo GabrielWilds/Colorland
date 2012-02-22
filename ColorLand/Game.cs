@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace ColorLand
 {
-    class Game
+    public class Game
     {
         private List<Player> _players = new List<Player>();
         public int _curTurn = 0;
@@ -32,10 +32,10 @@ namespace ColorLand
             private set { _players = value; }
         }
 
-        public Game(Board _board, Deck _deck)
+        public Game(Board _board)
         {
             Board = _board;
-            Deck = _deck;
+            Deck = new Deck();
         }
 
         public int CurTurn
@@ -62,7 +62,7 @@ namespace ColorLand
 
         public void Start(MainWindow window)
         {
-            PopulateDemoGame();
+            //PopulateDemoGame();
             if (Players[CurTurn] is BotPlayer)
                 TakeTurn(window);
         }

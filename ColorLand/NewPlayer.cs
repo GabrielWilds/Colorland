@@ -7,7 +7,7 @@ namespace ColorLand
 {
     class NewPlayer
     {
-        public Player Player
+        public string Name
         {
             get;
             set;

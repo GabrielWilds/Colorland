@@ -48,5 +48,10 @@ namespace ColorLand
         {
             ((MenuWindowViewModel)this.DataContext).SetBoardToHuge();
         }
+
+        private void StartGame(object sender, RoutedEventArgs e)
+        {
+            ((MenuWindowViewModel)this.DataContext).StartGameCheck(this);
+        }
     }
 }

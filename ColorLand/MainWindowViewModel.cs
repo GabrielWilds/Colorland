@@ -17,10 +17,33 @@ namespace ColorLand
             private set { _game = value; OnPropertyChanged("ColorLandGame"); }
         }
 
-        public MainWindowViewModel(int boardHeight, int boardWidth)
+        public int CanvasHeight
         {
-            Board board = new Board(boardHeight, boardWidth);
-            ColorLandGame = new Game(board, new Deck());
+            get;
+            set;
+        }
+
+        public int CanvasWidth
+        {
+            get;
+            set;
+        }
+
+        public int WindowHeight
+        {
+            get { return CanvasHeight + 150; }
+        }
+
+        public int WindowWidth
+        {
+            get { return CanvasWidth + 200; }
+        }
+
+        public MainWindowViewModel(Game game, int canvasHeight, int canvasWidth)
+        {
+            _game = game;
+            CanvasHeight = canvasHeight;
+            CanvasWidth = canvasWidth;
         }
 
         private void OnPropertyChanged(string propertyName)

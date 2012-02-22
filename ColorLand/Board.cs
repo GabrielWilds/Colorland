@@ -46,11 +46,13 @@ namespace ColorLand
             set;
         }
 
-        public Board(int height, int width)
+        public Board(int height, int width, int canvasHeight, int canvasWidth)
         {
             Height = height;
             Width = width;        
             Tiles = BoardGeneration.GenerateBoard(Height, Width);
+            TileHeight = (int)(canvasHeight / Height);
+            TileWidth = (int)(canvasWidth / Width);
         }
 
         public void DrawBoard(WPFCanvas canvas)

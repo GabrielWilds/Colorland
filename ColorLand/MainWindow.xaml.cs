@@ -25,9 +25,9 @@ namespace ColorLand
             set { BoardCanvas = value; }
         }
 
-        public MainWindow()
+        public MainWindow(Game game, int canvasHeight, int canvasWidth)
         {
-            this.DataContext = new MainWindowViewModel(20, 30);
+            this.DataContext = new MainWindowViewModel(game, canvasHeight, canvasWidth);
             InitializeComponent();
             ((MainWindowViewModel)this.DataContext).ColorLandGame.Board.DrawBoard(GameCanvas);
             ((MainWindowViewModel)this.DataContext).ColorLandGame.Start(this);

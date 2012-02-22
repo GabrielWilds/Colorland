@@ -24,7 +24,7 @@
                         <GridViewColumn Header="Name"  Width="240">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Width="210" Text="{Binding Path=Player.Name}"></TextBox>
+                                    <TextBox Width="210" Text="{Binding Path=Name}"></TextBox>
                                 </DataTemplate>                       
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>                   
@@ -58,11 +58,11 @@
             </GroupBox.Header>
             <Grid>
                 <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-30,0,0" IsChecked="{Binding Path=IsRandomSeed}">Random Seed</CheckBox>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,25,0,0" IsEnabled="{Binding Path=IsCustomSeed}">Seed:</TextBlock>
-                <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,25,0,0" Width="100" IsEnabled="{Binding Path=IsCustomSeed}" Text="{Binding Path=Seed}"></TextBox>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,22,0,0" IsEnabled="{Binding Path=IsCustomSeed}">Seed:</TextBlock>
+                <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,22,0,0" Width="100" IsEnabled="{Binding Path=IsCustomSeed}" Text="{Binding Path=Seed}"></TextBox>
             </Grid>
         </GroupBox>
         
-        <Button Grid.Row="3" Grid.Column="1" Height="30" Width="80" HorizontalAlignment="Right" Margin="0,0,10,0">Start Game</Button>
+        <Button Grid.Row="3" Grid.Column="1" Height="30" Width="80" HorizontalAlignment="Right" Margin="0,0,10,0" Click="StartGame">Start Game</Button>
     </Grid>
 </Window>
